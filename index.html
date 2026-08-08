@@ -1,0 +1,1184 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Muhammad Talha Munir | ServiceNow Developer & Solutions Architect</title>
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Background 3D Canvas -->
+    <canvas id="full-stack-3d-canvas" class="fixed top-0 left-0 w-full h-full -z-10 pointer-events-none"></canvas>
+    <!-- Three.js Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <link rel="stylesheet" href="/assets/style.css">
+
+</head>
+
+<body
+    class="bg-[var(--bg-color)] text-[var(--text-color)] font-sans antialiased transition-colors duration-300 selection:bg-[var(--primary-green)] selection:text-black">
+    <!-- Scroll Progress Bar -->
+    <div class="fixed bottom-0 left-0 w-full h-1.5 z-[100] bg-transparent">
+        <div id="scroll-progress"
+            class="h-full w-0 bg-[var(--primary-green)] transition-all duration-150 ease-out shadow-[var(--glow-shadow)]">
+        </div>
+    </div>
+    
+    <!-- Top Announcement Bar -->
+    <div
+        class="bg-[var(--dark-green)] text-[var(--primary-green)] border-b border-custom text-xs py-2 px-4 text-center font-semibold tracking-wider">
+        ⚡ Certified ServiceNow Specialist (CSA & CIS-DF) &bull; <a href="#contact"
+            class="underline ml-1 hover:brightness-125 transition">Available for Consulting & Hire &rarr;</a>
+    </div>
+
+    <!-- ================= Header ================= -->
+    <header class="bg-[var(--card-bg)] backdrop-blur-md sticky top-0 z-50 border-b border-custom transition-all">
+        <nav class="max-w-7xl mx-auto px-4 sm:px-6 py-3.5 flex justify-between items-center"
+            aria-label="Main Navigation">
+
+            <!-- Logo / Brand Title -->
+            <a href="#" class="flex items-center gap-3 group"
+                aria-label="Muhammad Talha Munir - ServiceNow Solutions Architect Homepage">
+                <div
+                    class="w-10 h-10 rounded-xl bg-[var(--dark-green)] border border-custom flex items-center justify-center text-[var(--primary-green)] font-black text-xl shadow-lg group-hover:scale-105 transition transform">
+                    MT
+                </div>
+                <div>
+                    <span class="text-xl font-extrabold tracking-wider text-[var(--text-color)] block leading-none">
+                        MUHAMMAD<span class="text-[var(--primary-green)]"> TALHA</span>
+                    </span>
+                    <span
+                        class="text-[10px] text-[var(--text-muted)] font-medium tracking-tight block mt-0.5">ServiceNow
+                        &amp; AI Solutions Architect</span>
+                </div>
+            </a>
+
+            <!-- Desktop Navigation Links -->
+            <div class="hidden lg:flex items-center space-x-6 text-sm font-medium text-[var(--text-muted)]">
+                <a href="#hero" title="Home Section" class="hover:text-[var(--primary-green)] transition">Home</a>
+                <a href="#about" title="About Muhammad Talha"
+                    class="hover:text-[var(--primary-green)] transition">About</a>
+                <a href="#services" title="Technical Skills & Competencies"
+                    class="hover:text-[var(--primary-green)] transition">Skills</a>
+                <a href="#projects" title="Featured ServiceNow Projects"
+                    class="hover:text-[var(--primary-green)] transition">Projects</a>
+                <a href="#contact" title="Get in Touch" class="hover:text-[var(--primary-green)] transition">Contact</a>
+            </div>
+
+            <!-- Right Side Call to Actions (CTAs) -->
+            <div class="flex items-center gap-3">
+                <!-- Dark/Light Theme Toggle -->
+                <button id="theme-toggle" type="button" aria-label="Toggle Dark/Light Mode"
+                    class="p-2.5 rounded-xl bg-[var(--card-bg)] text-[var(--text-color)] border border-custom hover:brightness-125 transition">
+                    <i id="theme-icon" class="fa-solid fa-sun text-sm"></i>
+                </button>
+
+                <!-- Resume Download Button -->
+                <a href="/resume.pdf" download="Muhammad_Talha_Munir_ServiceNow_Architect.pdf" target="_blank"
+                    rel="noopener" aria-label="Download Resume PDF"
+                    class="hidden sm:inline-flex items-center gap-2 border border-[var(--primary-green)] text-[var(--primary-green)] font-bold text-xs px-4 py-2.5 rounded-xl hover:bg-[var(--primary-green)] hover:text-black transition">
+                    <i class="fa-solid fa-file-arrow-down text-xs"></i>
+                    <span>Resume</span>
+                </a>
+
+                <!-- Direct Contact Button -->
+                <a href="#contact" aria-label="Contact Muhammad Talha Munir"
+                    class="hidden sm:inline-flex items-center gap-2 bg-[var(--primary-green)] text-[var(--text-on-green)] font-extrabold text-sm px-5 py-2.5 rounded-xl shadow-[var(--glow-shadow)] hover:scale-105 transition transform">
+                    <span>Let's Talk</span>
+                    <i class="fa-solid fa-arrow-right text-xs"></i>
+                </a>
+
+                <!-- Mobile Menu Toggle Button -->
+                <button id="mobile-menu-btn" type="button" aria-label="Open Navigation Menu" aria-expanded="false"
+                    class="lg:hidden text-[var(--text-color)] text-xl p-2 focus:outline-none">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+            </div>
+        </nav>
+
+        <!-- Mobile Navigation Drawer -->
+        <div id="mobile-menu"
+            class="hidden lg:hidden bg-[var(--bg-color)] border-b border-custom px-6 py-5 space-y-4 shadow-2xl">
+            <a href="#hero"
+                class="block text-[var(--text-color)] hover:text-[var(--primary-green)] font-medium">Home</a>
+            <a href="#about"
+                class="block text-[var(--text-color)] hover:text-[var(--primary-green)] font-medium">About</a>
+            <a href="#services"
+                class="block text-[var(--text-color)] hover:text-[var(--primary-green)] font-medium">Skills</a>
+            <a href="#projects"
+                class="block text-[var(--text-color)] hover:text-[var(--primary-green)] font-medium">Projects</a>
+            <a href="/resume.pdf" download="Muhammad_Talha_Munir_ServiceNow_Architect.pdf" target="_blank"
+                rel="noopener" class="block text-[var(--primary-green)] font-bold flex items-center gap-2">
+                <i class="fa-solid fa-file-arrow-down text-xs"></i>
+                <span>Download Resume</span>
+            </a>
+            <a href="#contact" class="block text-[var(--primary-green)] font-bold">Let's Talk</a>
+        </div>
+    </header>
+
+    <!-- ================= Hero Section ================= -->
+    <section id="hero"
+        class="relative z-10 overflow-hidden pt-12 pb-20 md:pt-20 md:pb-28 bg-transparent text-[var(--text-color)] transition-colors duration-300">
+        <!-- Glowing Background Effect -->
+        <div
+            class="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[550px] h-[550px] bg-[var(--primary-green)] opacity-10 blur-[130px] rounded-full pointer-events-none animate-glow">
+        </div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
+            <!-- Availability Badge -->
+            <div class="flex justify-center mb-6">
+                <div
+                    class="inline-flex items-center gap-2 glass-pill text-[var(--primary-green)] text-xs font-semibold px-4 py-2 rounded-full shadow-md">
+                    <span class="w-2 h-2 rounded-full bg-[var(--primary-green)] animate-ping"></span>
+                    <span>Available for Freelance &amp; Enterprise Consulting</span>
+                </div>
+            </div>
+
+            <!-- Main Title & Description -->
+            <div class="text-center max-w-4xl mx-auto mb-12">
+                <h1
+                    class="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight leading-[1.15] text-[var(--text-color)]">
+                    Architecting Next-Gen <span class="text-[var(--primary-green)]">ServiceNow</span> &amp; AI Workflows
+                </h1>
+                <p class="text-[var(--text-muted)] text-base sm:text-lg mt-4 max-w-2xl mx-auto leading-relaxed">
+                    Certified ServiceNow Developer (CSA &amp; CIS-DF) &amp; Computer Science Engineer specializing in
+                    enterprise ITSM, ITAM, CMDB, and Autonomous AI Integrations.
+                </p>
+            </div>
+
+            <!-- Profile Cards & Visual Presentation -->
+            <div class="relative max-w-4xl mx-auto flex justify-center items-center my-8">
+                <div class="relative z-20 group animate-float-slow">
+                    <div
+                        class="absolute -inset-2 rounded-3xl bg-gradient-to-r from-[var(--primary-green)] to-[var(--dark-green)] opacity-40 blur-lg group-hover:opacity-75 transition duration-500">
+                    </div>
+
+                    <div
+                        class="relative w-64 h-80 sm:w-72 sm:h-96 md:w-80 md:h-[420px] rounded-3xl overflow-hidden border-2 border-custom bg-[var(--card-bg)] shadow-2xl">
+                        <img src="/assets/photo.jpg"
+                            alt="Muhammad Talha Munir - Certified ServiceNow Developer &amp; Solutions Architect"
+                            loading="eager" fetchpriority="high" width="320" height="420"
+                            class="w-full h-full object-cover object-center" />
+                        <div
+                            class="absolute inset-0 bg-gradient-to-t from-[var(--bg-color)] via-transparent to-transparent opacity-90">
+                        </div>
+                        <div class="absolute bottom-4 left-4 right-4 text-center">
+                            <h2 class="text-white font-bold text-base leading-tight">Muhammad Talha Munir</h2>
+                            <p class="text-[var(--primary-green)] text-xs font-semibold tracking-wide">ServiceNow
+                                Architect</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Floating Badge 1: Certifications -->
+                <div class="absolute top-4 -left-2 sm:left-4 md:left-12 z-30 animate-float-fast"
+                    aria-label="Certifications Badge">
+                    <div
+                        class="bg-[var(--card-bg)] backdrop-blur-md border border-custom p-3.5 rounded-2xl flex items-center gap-3 shadow-[var(--glow-shadow)]">
+                        <div
+                            class="w-10 h-10 rounded-xl bg-[var(--dark-green)] text-[var(--primary-green)] flex items-center justify-center text-lg">
+                            <i class="fa-solid fa-shield-halved" aria-hidden="true"></i>
+                        </div>
+                        <div class="text-left">
+                            <span
+                                class="block text-[10px] uppercase tracking-wider text-[var(--text-muted)] font-bold">Certifications</span>
+                            <span class="text-xs sm:text-sm font-extrabold text-[var(--text-color)]">CSA &amp;
+                                CIS-DF</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Floating Badge 2: Specialty -->
+                <div class="absolute top-10 -right-2 sm:right-4 md:right-10 z-30 animate-float-slow"
+                    style="animation-delay: 1s;" aria-label="Specialty Badge">
+                    <div
+                        class="bg-[var(--card-bg)] backdrop-blur-md border border-custom p-3.5 rounded-2xl flex items-center gap-3 shadow-[var(--glow-shadow)]">
+                        <div
+                            class="w-10 h-10 rounded-xl bg-[var(--dark-green)] text-[var(--primary-green)] flex items-center justify-center text-lg">
+                            <i class="fa-solid fa-microchip" aria-hidden="true"></i>
+                        </div>
+                        <div class="text-left">
+                            <span
+                                class="block text-[10px] uppercase tracking-wider text-[var(--text-muted)] font-bold">Specialty</span>
+                            <span class="text-xs sm:text-sm font-extrabold text-[var(--text-color)]">ServiceNow +
+                                AI</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Action Buttons / Calls to Action (CTA) -->
+            <div class="mt-12 flex flex-col sm:flex-row justify-center items-center gap-4 relative z-30">
+                <a href="#projects"
+                    class="w-full sm:w-auto bg-[var(--primary-green)] text-[var(--text-on-green)] font-extrabold text-base px-8 py-4 rounded-xl shadow-[var(--glow-shadow)] hover:scale-105 transition transform text-center">
+                    <span>Explore Featured Work</span>
+                    <i class="fa-solid fa-arrow-right ml-2 text-sm" aria-hidden="true"></i>
+                </a>
+                <a href="#contact"
+                    class="w-full sm:w-auto border border-custom bg-[var(--card-bg)] text-[var(--text-color)] hover:border-[var(--primary-green)] hover:text-[var(--primary-green)] font-semibold text-base px-8 py-4 rounded-xl transition text-center">
+                    <span>Get In Touch</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= About Section ================= -->
+    <section id="about"
+        class="relative overflow-hidden py-20 md:py-32 bg-[var(--bg-color)] text-[var(--text-color)] transition-colors duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
+            <!-- Section Header -->
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <div
+                    class="inline-flex items-center gap-2 glass-pill text-[var(--primary-green)] text-xs font-semibold px-4 py-2 rounded-full mb-4">
+                    <i class="fa-solid fa-user-gear text-xs" aria-hidden="true"></i>
+                    <span>About My Background</span>
+                </div>
+                <h2 class="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight">
+                    Driven by Innovation, Dedicated to <span class="text-[var(--primary-green)]">Excellence</span>
+                </h2>
+            </div>
+
+            <div class="grid lg:grid-cols-12 gap-10 items-center">
+                <!-- Bio Card -->
+                <div class="lg:col-span-7 space-y-6">
+                    <div
+                        class="bg-[var(--card-bg)] backdrop-blur-xl border border-custom p-8 rounded-3xl hover:border-[var(--primary-green)] transition duration-500 shadow-[var(--glow-shadow)]">
+                        <h3 class="text-2xl font-bold mb-4 flex items-center gap-3">
+                            <span class="w-3 h-3 rounded-full bg-[var(--primary-green)]" aria-hidden="true"></span>
+                            <span>Professional Summary</span>
+                        </h3>
+                        <p class="text-[var(--text-muted)] text-sm sm:text-base leading-relaxed mb-4">
+                            I am a <strong>ServiceNow Developer &amp; Software Engineer</strong> with over 4 years of
+                            hands-on expertise building enterprise-grade ITSM, ITAM, FSM, CSM, and CMDB architectures.
+                        </p>
+                        <p class="text-[var(--text-muted)] text-sm sm:text-base leading-relaxed mb-6">
+                            My core focus is on automating complex enterprise business processes through <strong>Glide
+                                API</strong>, <strong>REST/SOAP integrations</strong>, and <strong>Flow
+                                Designer</strong>, while pairing ServiceNow platforms with cutting-edge
+                            <strong>Autonomous AI Agent capabilities</strong>.
+                        </p>
+
+                        <!-- Core Values & Badges Grid -->
+                        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-2">
+                            <div class="glass-pill p-3 rounded-xl text-center">
+                                <i class="fa-solid fa-certificate text-[var(--primary-green)] text-lg mb-1 block"
+                                    aria-hidden="true"></i>
+                                <span class="text-xs font-bold block">CSA Certified</span>
+                            </div>
+                            <div class="glass-pill p-3 rounded-xl text-center">
+                                <i class="fa-solid fa-database text-[var(--primary-green)] text-lg mb-1 block"
+                                    aria-hidden="true"></i>
+                                <span class="text-xs font-bold block">CIS-DF</span>
+                            </div>
+                            <div class="glass-pill p-3 rounded-xl text-center">
+                                <i class="fa-solid fa-microchip text-[var(--primary-green)] text-lg mb-1 block"
+                                    aria-hidden="true"></i>
+                                <span class="text-xs font-bold block">AI Workflows</span>
+                            </div>
+                            <div class="glass-pill p-3 rounded-xl text-center">
+                                <i class="fa-solid fa-award text-[var(--primary-green)] text-lg mb-1 block"
+                                    aria-hidden="true"></i>
+                                <span class="text-xs font-bold block">Dean's List</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Skills Breakdown Card -->
+                <div class="lg:col-span-5">
+                    <div
+                        class="bg-[var(--card-bg)] backdrop-blur-xl border border-custom p-8 rounded-3xl shadow-[var(--glow-shadow)]">
+                        <div class="flex justify-between items-center mb-6">
+                            <div>
+                                <h3 class="text-xl font-bold">Technical Skills</h3>
+                                <p class="text-xs text-[var(--text-muted)] mt-1">Core Competencies</p>
+                            </div>
+                            <span
+                                class="glass-pill text-[var(--primary-green)] text-[10px] font-extrabold px-3 py-1 rounded-full uppercase">
+                                Verified
+                            </span>
+                        </div>
+
+                        <div class="space-y-5">
+                            <!-- Skill 1 -->
+                            <div>
+                                <div class="flex justify-between text-xs font-bold mb-1.5">
+                                    <span class="flex items-center gap-2">
+                                        <i class="fa-solid fa-bolt text-[var(--primary-green)]" aria-hidden="true"></i>
+                                        <span>ServiceNow Ecosystem</span>
+                                    </span>
+                                    <span class="text-[var(--primary-green)] font-extrabold">98%</span>
+                                </div>
+                                <div class="w-full h-2 rounded-full bg-[var(--dark-green)] overflow-hidden"
+                                    role="progressbar" aria-valuenow="98" aria-valuemin="0" aria-valuemax="100"
+                                    aria-label="ServiceNow Ecosystem Proficiency">
+                                    <div class="h-full bg-[var(--primary-green)] rounded-full" style="width: 98%;">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Skill 2 -->
+                            <div>
+                                <div class="flex justify-between text-xs font-bold mb-1.5">
+                                    <span class="flex items-center gap-2">
+                                        <i class="fa-solid fa-code text-[var(--primary-green)]" aria-hidden="true"></i>
+                                        <span>JavaScript &amp; Glide APIs</span>
+                                    </span>
+                                    <span class="text-[var(--primary-green)] font-extrabold">95%</span>
+                                </div>
+                                <div class="w-full h-2 rounded-full bg-[var(--dark-green)] overflow-hidden"
+                                    role="progressbar" aria-valuenow="95" aria-valuemin="0" aria-valuemax="100"
+                                    aria-label="JavaScript and Glide APIs Proficiency">
+                                    <div class="h-full bg-[var(--primary-green)] rounded-full" style="width: 95%;">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Skill 3 -->
+                            <div>
+                                <div class="flex justify-between text-xs font-bold mb-1.5">
+                                    <span class="flex items-center gap-2">
+                                        <i class="fa-solid fa-plug text-[var(--primary-green)]" aria-hidden="true"></i>
+                                        <span>REST / SOAP Integrations</span>
+                                    </span>
+                                    <span class="text-[var(--primary-green)] font-extrabold">92%</span>
+                                </div>
+                                <div class="w-full h-2 rounded-full bg-[var(--dark-green)] overflow-hidden"
+                                    role="progressbar" aria-valuenow="92" aria-valuemin="0" aria-valuemax="100"
+                                    aria-label="REST and SOAP Integrations Proficiency">
+                                    <div class="h-full bg-[var(--primary-green)] rounded-full" style="width: 92%;">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Skill 4 -->
+                            <div>
+                                <div class="flex justify-between text-xs font-bold mb-1.5">
+                                    <span class="flex items-center gap-2">
+                                        <i class="fa-solid fa-robot text-[var(--primary-green)]" aria-hidden="true"></i>
+                                        <span>Autonomous AI &amp; Flow Designer</span>
+                                    </span>
+                                    <span class="text-[var(--primary-green)] font-extrabold">90%</span>
+                                </div>
+                                <div class="w-full h-2 rounded-full bg-[var(--dark-green)] overflow-hidden"
+                                    role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"
+                                    aria-label="Autonomous AI and Flow Designer Proficiency">
+                                    <div class="h-full bg-[var(--primary-green)] rounded-full" style="width: 90%;">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= SKILLS SECTION ================= -->
+    <section id="services" class="py-20 px-4 sm:px-6 max-w-7xl mx-auto">
+        <!-- Section Heading (Centered) -->
+        <div class="mb-12 text-center">
+            <span
+                class="glass-pill text-[var(--primary-green)] text-xs font-bold px-4 py-1.5 rounded-full uppercase tracking-widest inline-block">
+                Technical Proficiency &amp; Expertise
+            </span>
+            <h2 class="text-3xl sm:text-4xl font-black mt-4 text-[var(--text-color)]">
+                Skills &amp; Core Capabilities
+            </h2>
+            <p class="text-[var(--text-muted)] text-base mt-2 max-w-2xl mx-auto">
+                A comprehensive overview of enterprise platform knowledge, development stack, cloud technologies, and
+                frameworks.
+            </p>
+        </div>
+
+        <!-- Skills Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+            <!-- SKILL CATEGORY 1: ServiceNow Platform -->
+            <article itemscope itemtype="https://schema.org/DefinedTerm"
+                class="glass-card p-6 rounded-3xl border border-custom bg-[var(--card-bg)] hover:border-[var(--primary-green)] transition flex flex-col justify-between group">
+                <div>
+                    <div class="flex items-center justify-between mb-4 pb-4 border-b border-custom">
+                        <span
+                            class="text-[11px] font-extrabold text-[var(--primary-green)] uppercase tracking-wider">Platform
+                            Core</span>
+                        <div
+                            class="w-8 h-8 rounded-lg bg-[var(--dark-green)] text-[var(--primary-green)] flex items-center justify-center text-sm border border-custom">
+                            <i class="fa-solid fa-layer-group" aria-hidden="true"></i>
+                        </div>
+                    </div>
+
+                    <h3 itemprop="name"
+                        class="text-xl font-extrabold text-[var(--text-color)] group-hover:text-[var(--primary-green)] transition mb-2">
+                        ServiceNow Architecture
+                    </h3>
+
+                    <p itemprop="description" class="text-[var(--text-muted)] text-xs sm:text-sm leading-relaxed mb-5">
+                        End-to-end configuration, Glide API development, Flow Designer, Business Rules, Client Scripts,
+                        Script Includes, and Service Portal widgets.
+                    </p>
+                </div>
+
+                <div class="flex flex-wrap gap-1.5 pt-4 border-t border-custom">
+                    <span
+                        class="glass-pill text-[10px] text-[var(--text-color)] px-2.5 py-0.5 rounded-md font-semibold">ITSM</span>
+                    <span
+                        class="glass-pill text-[10px] text-[var(--text-color)] px-2.5 py-0.5 rounded-md font-semibold">CSM</span>
+                    <span
+                        class="glass-pill text-[10px] text-[var(--text-color)] px-2.5 py-0.5 rounded-md font-semibold">FSM</span>
+                    <span
+                        class="glass-pill text-[10px] text-[var(--text-color)] px-2.5 py-0.5 rounded-md font-semibold">HAM</span>
+                    <span
+                        class="glass-pill text-[10px] text-[var(--text-color)] px-2.5 py-0.5 rounded-md font-semibold">Portal</span>
+                </div>
+            </article>
+
+            <!-- SKILL CATEGORY 2: ITOM & Infrastructure -->
+            <article itemscope itemtype="https://schema.org/DefinedTerm"
+                class="glass-card p-6 rounded-3xl border border-custom bg-[var(--card-bg)] hover:border-[var(--primary-green)] transition flex flex-col justify-between group">
+                <div>
+                    <div class="flex items-center justify-between mb-4 pb-4 border-b border-custom">
+                        <span
+                            class="text-[11px] font-extrabold text-[var(--primary-green)] uppercase tracking-wider">Infrastructure</span>
+                        <div
+                            class="w-8 h-8 rounded-lg bg-[var(--dark-green)] text-[var(--primary-green)] flex items-center justify-center text-sm border border-custom">
+                            <i class="fa-solid fa-server" aria-hidden="true"></i>
+                        </div>
+                    </div>
+
+                    <h3 itemprop="name"
+                        class="text-xl font-extrabold text-[var(--text-color)] group-hover:text-[var(--primary-green)] transition mb-2">
+                        ITOM &amp; Cloud Discovery
+                    </h3>
+
+                    <p itemprop="description" class="text-[var(--text-muted)] text-xs sm:text-sm leading-relaxed mb-5">
+                        CMDB health management, MID Server clustering, Service Graph Connectors, Event Management rules,
+                        and hybrid cloud discovery.
+                    </p>
+                </div>
+
+                <div class="flex flex-wrap gap-1.5 pt-4 border-t border-custom">
+                    <span
+                        class="glass-pill text-[10px] text-[var(--text-color)] px-2.5 py-0.5 rounded-md font-semibold">Discovery</span>
+                    <span
+                        class="glass-pill text-[10px] text-[var(--text-color)] px-2.5 py-0.5 rounded-md font-semibold">CMDB</span>
+                    <span
+                        class="glass-pill text-[10px] text-[var(--text-color)] px-2.5 py-0.5 rounded-md font-semibold">MID
+                        Server</span>
+                    <span
+                        class="glass-pill text-[10px] text-[var(--text-color)] px-2.5 py-0.5 rounded-md font-semibold">AWS</span>
+                    <span
+                        class="glass-pill text-[10px] text-[var(--text-color)] px-2.5 py-0.5 rounded-md font-semibold">Azure</span>
+                </div>
+            </article>
+
+            <!-- SKILL CATEGORY 3: GRC & Governance -->
+            <article itemscope itemtype="https://schema.org/DefinedTerm"
+                class="glass-card p-6 rounded-3xl border border-custom bg-[var(--card-bg)] hover:border-[var(--primary-green)] transition flex flex-col justify-between group">
+                <div>
+                    <div class="flex items-center justify-between mb-4 pb-4 border-b border-custom">
+                        <span
+                            class="text-[11px] font-extrabold text-[var(--primary-green)] uppercase tracking-wider">Governance</span>
+                        <div
+                            class="w-8 h-8 rounded-lg bg-[var(--dark-green)] text-[var(--primary-green)] flex items-center justify-center text-sm border border-custom">
+                            <i class="fa-solid fa-clipboard-check" aria-hidden="true"></i>
+                        </div>
+                    </div>
+
+                    <h3 itemprop="name"
+                        class="text-xl font-extrabold text-[var(--text-color)] group-hover:text-[var(--primary-green)] transition mb-2">
+                        IRM / GRC Frameworks
+                    </h3>
+
+                    <p itemprop="description" class="text-[var(--text-muted)] text-xs sm:text-sm leading-relaxed mb-5">
+                        Risk Assessment Engine configuration, Audit Management, Policy Mapping, Compliance controls
+                        setup, and automated issue tracking.
+                    </p>
+                </div>
+
+                <div class="flex flex-wrap gap-1.5 pt-4 border-t border-custom">
+                    <span
+                        class="glass-pill text-[10px] text-[var(--text-color)] px-2.5 py-0.5 rounded-md font-semibold">Risk
+                        Mgmt</span>
+                    <span
+                        class="glass-pill text-[10px] text-[var(--text-color)] px-2.5 py-0.5 rounded-md font-semibold">Compliance</span>
+                    <span
+                        class="glass-pill text-[10px] text-[var(--text-color)] px-2.5 py-0.5 rounded-md font-semibold">Audit</span>
+                    <span
+                        class="glass-pill text-[10px] text-[var(--text-color)] px-2.5 py-0.5 rounded-md font-semibold">Control
+                        Mapping</span>
+                </div>
+            </article>
+
+            <!-- SKILL CATEGORY 4: Web & Scripting -->
+            <article itemscope itemtype="https://schema.org/DefinedTerm"
+                class="glass-card p-6 rounded-3xl border border-custom bg-[var(--card-bg)] hover:border-[var(--primary-green)] transition flex flex-col justify-between group">
+                <div>
+                    <div class="flex items-center justify-between mb-4 pb-4 border-b border-custom">
+                        <span
+                            class="text-[11px] font-extrabold text-[var(--primary-green)] uppercase tracking-wider">Development
+                            Stack</span>
+                        <div
+                            class="w-8 h-8 rounded-lg bg-[var(--dark-green)] text-[var(--primary-green)] flex items-center justify-center text-sm border border-custom">
+                            <i class="fa-solid fa-code" aria-hidden="true"></i>
+                        </div>
+                    </div>
+
+                    <h3 itemprop="name"
+                        class="text-xl font-extrabold text-[var(--text-color)] group-hover:text-[var(--primary-green)] transition mb-2">
+                        Full-Stack &amp; Scripting
+                    </h3>
+
+                    <p itemprop="description" class="text-[var(--text-muted)] text-xs sm:text-sm leading-relaxed mb-5">
+                        Modern Web &amp; Backend technologies for custom integrations, microservices, front-end portals,
+                        and developer utilities.
+                    </p>
+                </div>
+
+                <div class="flex flex-wrap gap-1.5 pt-4 border-t border-custom">
+                    <span
+                        class="glass-pill text-[10px] text-[var(--text-color)] px-2.5 py-0.5 rounded-md font-semibold">JavaScript
+                        (ES6+)</span>
+                    <span
+                        class="glass-pill text-[10px] text-[var(--text-color)] px-2.5 py-0.5 rounded-md font-semibold">HTML5/CSS3</span>
+                    <span
+                        class="glass-pill text-[10px] text-[var(--text-color)] px-2.5 py-0.5 rounded-md font-semibold">Tailwind
+                        CSS</span>
+                    <span
+                        class="glass-pill text-[10px] text-[var(--text-color)] px-2.5 py-0.5 rounded-md font-semibold">AngularJS</span>
+                </div>
+            </article>
+
+            <!-- SKILL CATEGORY 5: Backend & AI Integrations -->
+            <article itemscope itemtype="https://schema.org/DefinedTerm"
+                class="glass-card p-6 rounded-3xl border border-custom bg-[var(--card-bg)] hover:border-[var(--primary-green)] transition flex flex-col justify-between group">
+                <div>
+                    <div class="flex items-center justify-between mb-4 pb-4 border-b border-custom">
+                        <span
+                            class="text-[11px] font-extrabold text-[var(--primary-green)] uppercase tracking-wider">Integrations
+                            &amp; AI</span>
+                        <div
+                            class="w-8 h-8 rounded-lg bg-[var(--dark-green)] text-[var(--primary-green)] flex items-center justify-center text-sm border border-custom">
+                            <i class="fa-solid fa-plug-circle-check" aria-hidden="true"></i>
+                        </div>
+                    </div>
+
+                    <h3 itemprop="name"
+                        class="text-xl font-extrabold text-[var(--text-color)] group-hover:text-[var(--primary-green)] transition mb-2">
+                        APIs &amp; Machine Learning
+                    </h3>
+
+                    <p itemprop="description" class="text-[var(--text-muted)] text-xs sm:text-sm leading-relaxed mb-5">
+                        Building robust REST/SOAP integrations, OAuth2 workflows, Python web services, and AI-driven
+                        automated code analysis.
+                    </p>
+                </div>
+
+                <div class="flex flex-wrap gap-1.5 pt-4 border-t border-custom">
+                    <span
+                        class="glass-pill text-[10px] text-[var(--text-color)] px-2.5 py-0.5 rounded-md font-semibold">REST/SOAP</span>
+                    <span
+                        class="glass-pill text-[10px] text-[var(--text-color)] px-2.5 py-0.5 rounded-md font-semibold">Python</span>
+                    <span
+                        class="glass-pill text-[10px] text-[var(--text-color)] px-2.5 py-0.5 rounded-md font-semibold">FastAPI</span>
+                    <span
+                        class="glass-pill text-[10px] text-[var(--text-color)] px-2.5 py-0.5 rounded-md font-semibold">OAuth
+                        2.0</span>
+                </div>
+            </article>
+
+            <!-- SKILL CATEGORY 6: Mobile & Native Engineering -->
+            <article itemscope itemtype="https://schema.org/DefinedTerm"
+                class="glass-card p-6 rounded-3xl border border-custom bg-[var(--card-bg)] hover:border-[var(--primary-green)] transition flex flex-col justify-between group">
+                <div>
+                    <div class="flex items-center justify-between mb-4 pb-4 border-b border-custom">
+                        <span
+                            class="text-[11px] font-extrabold text-[var(--primary-green)] uppercase tracking-wider">Software
+                            Engineering</span>
+                        <div
+                            class="w-8 h-8 rounded-lg bg-[var(--dark-green)] text-[var(--primary-green)] flex items-center justify-center text-sm border border-custom">
+                            <i class="fa-solid fa-laptop-code" aria-hidden="true"></i>
+                        </div>
+                    </div>
+
+                    <h3 itemprop="name"
+                        class="text-xl font-extrabold text-[var(--text-color)] group-hover:text-[var(--primary-green)] transition mb-2">
+                        Mobile &amp; Native Core
+                    </h3>
+
+                    <p itemprop="description" class="text-[var(--text-muted)] text-xs sm:text-sm leading-relaxed mb-5">
+                        Object-Oriented Programming, native Android mobile app architecture, data structures, and
+                        algorithmic logic design.
+                    </p>
+                </div>
+
+                <div class="flex flex-wrap gap-1.5 pt-4 border-t border-custom">
+                    <span
+                        class="glass-pill text-[10px] text-[var(--text-color)] px-2.5 py-0.5 rounded-md font-semibold">Kotlin</span>
+                    <span
+                        class="glass-pill text-[10px] text-[var(--text-color)] px-2.5 py-0.5 rounded-md font-semibold">C++</span>
+                    <span
+                        class="glass-pill text-[10px] text-[var(--text-color)] px-2.5 py-0.5 rounded-md font-semibold">OOP</span>
+                    <span
+                        class="glass-pill text-[10px] text-[var(--text-color)] px-2.5 py-0.5 rounded-md font-semibold">Android
+                        SDK</span>
+                </div>
+            </article>
+
+        </div>
+    </section>
+
+    <!-- ================= PROJECTS SECTION ================= -->
+    <section id="projects" class="py-20 px-4 sm:px-6 max-w-7xl mx-auto">
+        <!-- Section Heading (Centered) -->
+        <div class="mb-12 text-center">
+            <span
+                class="glass-pill text-[var(--primary-green)] text-xs font-bold px-4 py-1.5 rounded-full uppercase tracking-widest inline-block">
+                Case Studies &amp; Engineering Work
+            </span>
+            <h2 class="text-3xl sm:text-4xl font-black mt-4 text-[var(--text-color)]">
+                Featured Projects &amp; Implementations
+            </h2>
+            <p class="text-[var(--text-muted)] text-base mt-2 max-w-2xl mx-auto">
+                A showcase of enterprise ServiceNow solutions, hybrid cloud discovery, GRC frameworks, and AI-driven
+                tools.
+            </p>
+        </div>
+
+        <!-- Projects Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+            <!-- PROJECT 1: XaaS Solutions -->
+            <article itemscope itemtype="https://schema.org/CreativeWork"
+                class="glass-card p-6 rounded-3xl border border-custom bg-[var(--card-bg)] hover:border-[var(--primary-green)] transition flex flex-col justify-between group">
+                <div>
+                    <div class="flex items-center justify-between mb-4 pb-4 border-b border-custom">
+                        <span
+                            class="text-[11px] font-extrabold text-[var(--primary-green)] uppercase tracking-wider">Enterprise
+                            Workflows</span>
+                        <div
+                            class="w-8 h-8 rounded-lg bg-[var(--dark-green)] text-[var(--primary-green)] flex items-center justify-center text-sm border border-custom">
+                            <i class="fa-solid fa-briefcase" aria-hidden="true"></i>
+                        </div>
+                    </div>
+
+                    <h3 itemprop="name"
+                        class="text-xl font-extrabold text-[var(--text-color)] group-hover:text-[var(--primary-green)] transition mb-2">
+                        Xaas Solutions — Asset &amp; Workflow Suite
+                    </h3>
+
+                    <p itemprop="description" class="text-[var(--text-muted)] text-xs sm:text-sm leading-relaxed mb-5">
+                        Architected WO/WOT lifecycles for mobile teams, HAM stockroom frameworks, custom Service
+                        Portals, PA dashboards (SLA/MTTR), and bi-directional REST APIs.
+                    </p>
+                </div>
+
+                <div>
+                    <div class="flex flex-wrap gap-1.5 pt-4 border-t border-custom mb-4">
+                        <span
+                            class="glass-pill text-[10px] text-[var(--text-color)] px-2.5 py-0.5 rounded-md">FSM</span>
+                        <span
+                            class="glass-pill text-[10px] text-[var(--text-color)] px-2.5 py-0.5 rounded-md">HAM</span>
+                        <span
+                            class="glass-pill text-[10px] text-[var(--text-color)] px-2.5 py-0.5 rounded-md">CSM</span>
+                        <span class="glass-pill text-[10px] text-[var(--text-color)] px-2.5 py-0.5 rounded-md">REST
+                            APIs</span>
+                    </div>
+                    <a href="#contact" title="Discuss Xaas Solutions Project"
+                        class="inline-flex items-center text-xs font-bold text-[var(--primary-green)] hover:underline gap-1">
+                        <span>Discuss Implementation</span>
+                        <i class="fa-solid fa-arrow-right text-[10px]" aria-hidden="true"></i>
+                    </a>
+                </div>
+            </article>
+
+            <!-- PROJECT 2: ITOM & CMDB Discovery Architect -->
+            <article itemscope itemtype="https://schema.org/CreativeWork"
+                class="glass-card p-6 rounded-3xl border border-custom bg-[var(--card-bg)] hover:border-[var(--primary-green)] transition flex flex-col justify-between group">
+                <div>
+                    <div class="flex items-center justify-between mb-4 pb-4 border-b border-custom">
+                        <span
+                            class="text-[11px] font-extrabold text-[var(--primary-green)] uppercase tracking-wider">ITOM
+                            &amp; Discovery</span>
+                        <div
+                            class="w-8 h-8 rounded-lg bg-[var(--dark-green)] text-[var(--primary-green)] flex items-center justify-center text-sm border border-custom">
+                            <i class="fa-solid fa-network-wired" aria-hidden="true"></i>
+                        </div>
+                    </div>
+
+                    <h3 itemprop="name"
+                        class="text-xl font-extrabold text-[var(--text-color)] group-hover:text-[var(--primary-green)] transition mb-2">
+                        ITOM &amp; Hybrid CMDB Discovery
+                    </h3>
+
+                    <p itemprop="description" class="text-[var(--text-muted)] text-xs sm:text-sm leading-relaxed mb-5">
+                        Deployed Service Graph Connectors, high-availability MID Servers, and automated discovery across
+                        AWS, Azure, and on-premise infrastructure with ITOM Event Management.
+                    </p>
+                </div>
+
+                <div>
+                    <div class="flex flex-wrap gap-1.5 pt-4 border-t border-custom mb-4">
+                        <span
+                            class="glass-pill text-[10px] text-[var(--text-color)] px-2.5 py-0.5 rounded-md">ITOM</span>
+                        <span
+                            class="glass-pill text-[10px] text-[var(--text-color)] px-2.5 py-0.5 rounded-md">CMDB</span>
+                        <span
+                            class="glass-pill text-[10px] text-[var(--text-color)] px-2.5 py-0.5 rounded-md">AWS/Azure</span>
+                        <span class="glass-pill text-[10px] text-[var(--text-color)] px-2.5 py-0.5 rounded-md">MID
+                            Server</span>
+                    </div>
+                    <a href="#contact" title="Discuss ITOM Implementation"
+                        class="inline-flex items-center text-xs font-bold text-[var(--primary-green)] hover:underline gap-1">
+                        <span>Discuss Implementation</span>
+                        <i class="fa-solid fa-arrow-right text-[10px]" aria-hidden="true"></i>
+                    </a>
+                </div>
+            </article>
+
+            <!-- PROJECT 3: IRM/GRC Consultant -->
+            <article itemscope itemtype="https://schema.org/CreativeWork"
+                class="glass-card p-6 rounded-3xl border border-custom bg-[var(--card-bg)] hover:border-[var(--primary-green)] transition flex flex-col justify-between group">
+                <div>
+                    <div class="flex items-center justify-between mb-4 pb-4 border-b border-custom">
+                        <span
+                            class="text-[11px] font-extrabold text-[var(--primary-green)] uppercase tracking-wider">IRM
+                            &amp; Risk Governance</span>
+                        <div
+                            class="w-8 h-8 rounded-lg bg-[var(--dark-green)] text-[var(--primary-green)] flex items-center justify-center text-sm border border-custom">
+                            <i class="fa-solid fa-shield-halved" aria-hidden="true"></i>
+                        </div>
+                    </div>
+
+                    <h3 itemprop="name"
+                        class="text-xl font-extrabold text-[var(--text-color)] group-hover:text-[var(--primary-green)] transition mb-2">
+                        IRM / GRC Audit Compliance Framework
+                    </h3>
+
+                    <p itemprop="description" class="text-[var(--text-muted)] text-xs sm:text-sm leading-relaxed mb-5">
+                        Tailored Risk Assessment methodologies, mapped 50+ Control Objectives to internal policies, and
+                        automated remediation workflows—reducing audit prep time by 40%.
+                    </p>
+                </div>
+
+                <div>
+                    <div class="flex flex-wrap gap-1.5 pt-4 border-t border-custom mb-4">
+                        <span class="glass-pill text-[10px] text-[var(--text-color)] px-2.5 py-0.5 rounded-md">IRM /
+                            GRC</span>
+                        <span class="glass-pill text-[10px] text-[var(--text-color)] px-2.5 py-0.5 rounded-md">Risk
+                            Mgmt</span>
+                        <span class="glass-pill text-[10px] text-[var(--text-color)] px-2.5 py-0.5 rounded-md">Audit
+                            Ready</span>
+                    </div>
+                    <a href="#contact" title="Discuss IRM/GRC Framework"
+                        class="inline-flex items-center text-xs font-bold text-[var(--primary-green)] hover:underline gap-1">
+                        <span>Discuss Implementation</span>
+                        <i class="fa-solid fa-arrow-right text-[10px]" aria-hidden="true"></i>
+                    </a>
+                </div>
+            </article>
+
+            <!-- PROJECT 4: SnowCodeX -->
+            <article itemscope itemtype="https://schema.org/CreativeWork"
+                class="glass-card p-6 rounded-3xl border border-custom bg-[var(--card-bg)] hover:border-[var(--primary-green)] transition flex flex-col justify-between group">
+                <div>
+                    <div class="flex items-center justify-between mb-4 pb-4 border-b border-custom">
+                        <span class="text-[11px] font-extrabold text-[var(--primary-green)] uppercase tracking-wider">AI
+                            Innovation</span>
+                        <div
+                            class="w-8 h-8 rounded-lg bg-[var(--dark-green)] text-[var(--primary-green)] flex items-center justify-center text-sm border border-custom">
+                            <i class="fa-solid fa-robot" aria-hidden="true"></i>
+                        </div>
+                    </div>
+
+                    <h3 itemprop="name"
+                        class="text-xl font-extrabold text-[var(--text-color)] group-hover:text-[var(--primary-green)] transition mb-2">
+                        SnowCodeX — ServiceNow Script Auditor
+                    </h3>
+
+                    <p itemprop="description" class="text-[var(--text-muted)] text-xs sm:text-sm leading-relaxed mb-5">
+                        Created an AI-driven framework that scans ServiceNow JavaScript (Client/Server) to detect "Bad
+                        Practices" and performance bottlenecks before code reaches production.
+                    </p>
+                </div>
+
+                <div>
+                    <div class="flex flex-wrap gap-1.5 pt-4 border-t border-custom mb-4">
+                        <span
+                            class="glass-pill text-[10px] text-[var(--text-color)] px-2.5 py-0.5 rounded-md">FastAPI</span>
+                        <span
+                            class="glass-pill text-[10px] text-[var(--text-color)] px-2.5 py-0.5 rounded-md">Python</span>
+                        <span class="glass-pill text-[10px] text-[var(--text-color)] px-2.5 py-0.5 rounded-md">Machine
+                            Learning</span>
+                    </div>
+                    <a href="#contact" title="Discuss SnowCodeX Project"
+                        class="inline-flex items-center text-xs font-bold text-[var(--primary-green)] hover:underline gap-1">
+                        <span>Discuss Architecture</span>
+                        <i class="fa-solid fa-arrow-right text-[10px]" aria-hidden="true"></i>
+                    </a>
+                </div>
+            </article>
+
+            <!-- PROJECT 5: SNOWDOCS Mobile App -->
+            <article itemscope itemtype="https://schema.org/CreativeWork"
+                class="glass-card p-6 rounded-3xl border border-custom bg-[var(--card-bg)] hover:border-[var(--primary-green)] transition flex flex-col justify-between group">
+                <div>
+                    <div class="flex items-center justify-between mb-4 pb-4 border-b border-custom">
+                        <span
+                            class="text-[11px] font-extrabold text-[var(--primary-green)] uppercase tracking-wider">Android
+                            App</span>
+                        <div
+                            class="w-8 h-8 rounded-lg bg-[var(--dark-green)] text-[var(--primary-green)] flex items-center justify-center text-sm border border-custom">
+                            <i class="fa-solid fa-mobile-screen-button" aria-hidden="true"></i>
+                        </div>
+                    </div>
+
+                    <h3 itemprop="name"
+                        class="text-xl font-extrabold text-[var(--text-color)] group-hover:text-[var(--primary-green)] transition mb-2">
+                        SNOWDOCS Mobile Learning Hub
+                    </h3>
+
+                    <p itemprop="description" class="text-[var(--text-muted)] text-xs sm:text-sm leading-relaxed mb-5">
+                        A dedicated native Android learning hub for the ServiceNow community, providing offline access
+                        to Glide API documentation, code snippets, and common scripting patterns.
+                    </p>
+                </div>
+
+                <div>
+                    <div class="flex flex-wrap gap-1.5 pt-4 border-t border-custom mb-4">
+                        <span
+                            class="glass-pill text-[10px] text-[var(--text-color)] px-2.5 py-0.5 rounded-md">Kotlin</span>
+                        <span
+                            class="glass-pill text-[10px] text-[var(--text-color)] px-2.5 py-0.5 rounded-md">XML</span>
+                        <span class="glass-pill text-[10px] text-[var(--text-color)] px-2.5 py-0.5 rounded-md">Android
+                            Studio</span>
+                    </div>
+                    <a href="#contact" title="Discuss SNOWDOCS App"
+                        class="inline-flex items-center text-xs font-bold text-[var(--primary-green)] hover:underline gap-1">
+                        <span>Discuss Project</span>
+                        <i class="fa-solid fa-arrow-right text-[10px]" aria-hidden="true"></i>
+                    </a>
+                </div>
+            </article>
+
+            <!-- PROJECT 6: Bank Management System -->
+            <article itemscope itemtype="https://schema.org/CreativeWork"
+                class="glass-card p-6 rounded-3xl border border-custom bg-[var(--card-bg)] hover:border-[var(--primary-green)] transition flex flex-col justify-between group">
+                <div>
+                    <div class="flex items-center justify-between mb-4 pb-4 border-b border-custom">
+                        <span
+                            class="text-[11px] font-extrabold text-[var(--primary-green)] uppercase tracking-wider">Software
+                            Engineering</span>
+                        <div
+                            class="w-8 h-8 rounded-lg bg-[var(--dark-green)] text-[var(--primary-green)] flex items-center justify-center text-sm border border-custom">
+                            <i class="fa-solid fa-building-columns" aria-hidden="true"></i>
+                        </div>
+                    </div>
+
+                    <h3 itemprop="name"
+                        class="text-xl font-extrabold text-[var(--text-color)] group-hover:text-[var(--primary-green)] transition mb-2">
+                        Bank Management System
+                    </h3>
+
+                    <p itemprop="description" class="text-[var(--text-muted)] text-xs sm:text-sm leading-relaxed mb-5">
+                        An Object-Oriented (OOP) desktop application managing complex financial transactions, loan
+                        processing algorithms, and secure account authentication.
+                    </p>
+                </div>
+
+                <div>
+                    <div class="flex flex-wrap gap-1.5 pt-4 border-t border-custom mb-4">
+                        <span
+                            class="glass-pill text-[10px] text-[var(--text-color)] px-2.5 py-0.5 rounded-md">C++</span>
+                        <span
+                            class="glass-pill text-[10px] text-[var(--text-color)] px-2.5 py-0.5 rounded-md">OOP</span>
+                        <span class="glass-pill text-[10px] text-[var(--text-color)] px-2.5 py-0.5 rounded-md">Dev
+                            C++</span>
+                    </div>
+                    <a href="#contact" title="Discuss Software Project"
+                        class="inline-flex items-center text-xs font-bold text-[var(--primary-green)] hover:underline gap-1">
+                        <span>Discuss Architecture</span>
+                        <i class="fa-solid fa-arrow-right text-[10px]" aria-hidden="true"></i>
+                    </a>
+                </div>
+            </article>
+
+        </div>
+    </section>
+
+    <!-- ================= Contact Section ================= -->
+    <section id="contact"
+        class="relative overflow-hidden py-20 md:py-32 bg-[var(--bg-color)] text-[var(--text-color)] transition-colors duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
+            <!-- Section Header -->
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <div
+                    class="inline-flex items-center gap-2 glass-pill text-[var(--primary-green)] text-xs font-semibold px-4 py-2 rounded-full mb-4">
+                    <i class="fa-solid fa-paper-plane text-xs" aria-hidden="true"></i>
+                    <span>Get In Touch</span>
+                </div>
+                <h2 class="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight">
+                    Let's Build Something <span class="text-[var(--primary-green)]">Great Together</span>
+                </h2>
+            </div>
+
+            <div class="grid md:grid-cols-12 gap-8 items-start">
+                <!-- Info Cards (Contact Info with Microdata) -->
+                <div class="md:col-span-5 space-y-4" itemscope itemtype="https://schema.org/ContactPoint">
+                    <!-- Email Card -->
+                    <div
+                        class="bg-[var(--card-bg)] border border-custom p-6 rounded-2xl flex items-center gap-4 hover:border-[var(--primary-green)] transition">
+                        <div
+                            class="w-12 h-12 rounded-xl bg-[var(--dark-green)] text-[var(--primary-green)] flex items-center justify-center text-xl border border-custom">
+                            <i class="fa-solid fa-envelope" aria-hidden="true"></i>
+                        </div>
+                        <div>
+                            <span class="text-xs text-[var(--text-muted)] font-semibold block uppercase">Email</span>
+                            <a href="mailto:muhammad.talhamunir@outlook.com" itemprop="email"
+                                aria-label="Send email to Muhammad Talha Munir"
+                                class="text-sm font-bold hover:text-[var(--primary-green)] transition">
+                                muhammad.talhamunir@outlook.com
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Phone Card -->
+                    <div
+                        class="bg-[var(--card-bg)] border border-custom p-6 rounded-2xl flex items-center gap-4 hover:border-[var(--primary-green)] transition">
+                        <div
+                            class="w-12 h-12 rounded-xl bg-[var(--dark-green)] text-[var(--primary-green)] flex items-center justify-center text-xl border border-custom">
+                            <i class="fa-solid fa-phone" aria-hidden="true"></i>
+                        </div>
+                        <div>
+                            <span class="text-xs text-[var(--text-muted)] font-semibold block uppercase">Phone</span>
+                            <a href="tel:+923284962656" itemprop="telephone" aria-label="Call Muhammad Talha Munir"
+                                class="text-sm font-bold hover:text-[var(--primary-green)] transition">
+                                +92 328 4962656
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Location Card -->
+                    <div
+                        class="bg-[var(--card-bg)] border border-custom p-6 rounded-2xl flex items-center gap-4 hover:border-[var(--primary-green)] transition">
+                        <div
+                            class="w-12 h-12 rounded-xl bg-[var(--dark-green)] text-[var(--primary-green)] flex items-center justify-center text-xl border border-custom">
+                            <i class="fa-solid fa-location-dot" aria-hidden="true"></i>
+                        </div>
+                        <div>
+                            <span class="text-xs text-[var(--text-muted)] font-semibold block uppercase">Location</span>
+                            <span itemprop="areaServed" class="text-sm font-bold">Punjab, Pakistan (Remote
+                                Global)</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contact Form -->
+                <div
+                    class="md:col-span-7 bg-[var(--card-bg)] border border-custom p-8 rounded-3xl shadow-[var(--glow-shadow)]">
+                    <form
+                        onsubmit="event.preventDefault(); alert('Thank you for reaching out! Your message has been received.');"
+                        class="space-y-4" aria-label="Contact Form">
+                        <div>
+                            <label for="contact-name"
+                                class="block text-xs font-bold mb-2 uppercase text-[var(--text-muted)]">Your
+                                Name</label>
+                            <input id="contact-name" type="text" name="name" required autocomplete="name"
+                                placeholder="John Doe"
+                                class="w-full bg-[var(--bg-color)] border border-custom rounded-xl p-3.5 text-sm focus:outline-none focus:border-[var(--primary-green)] text-[var(--text-color)] transition" />
+                        </div>
+                        <div>
+                            <label for="contact-email"
+                                class="block text-xs font-bold mb-2 uppercase text-[var(--text-muted)]">Your
+                                Email</label>
+                            <input id="contact-email" type="email" name="email" required autocomplete="email"
+                                placeholder="john@example.com"
+                                class="w-full bg-[var(--bg-color)] border border-custom rounded-xl p-3.5 text-sm focus:outline-none focus:border-[var(--primary-green)] text-[var(--text-color)] transition" />
+                        </div>
+                        <div>
+                            <label for="contact-message"
+                                class="block text-xs font-bold mb-2 uppercase text-[var(--text-muted)]">Message</label>
+                            <textarea id="contact-message" name="message" rows="4" required
+                                placeholder="Tell me about your project or requirement..."
+                                class="w-full bg-[var(--bg-color)] border border-custom rounded-xl p-3.5 text-sm focus:outline-none focus:border-[var(--primary-green)] text-[var(--text-color)] transition"></textarea>
+                        </div>
+                        <button type="submit"
+                            class="w-full bg-[var(--primary-green)] text-[var(--text-on-green)] font-extrabold py-4 rounded-xl shadow-[var(--glow-shadow)] hover:scale-[1.02] transition transform flex items-center justify-center gap-2">
+                            <span>Send Message</span>
+                            <i class="fa-solid fa-paper-plane text-xs" aria-hidden="true"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= Footer ================= -->
+    <footer class="bg-[var(--card-bg)] border-t border-custom pt-16 pb-8 px-4 sm:px-6 relative overflow-hidden">
+        <!-- Subtle Background Glow -->
+        <div
+            class="absolute bottom-0 left-1/2 -translate-x-1/2 w-[500px] h-[200px] bg-[var(--primary-green)] opacity-5 blur-[120px] pointer-events-none">
+        </div>
+
+        <div class="max-w-7xl mx-auto relative z-10">
+            <!-- Main Footer Content Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 pb-12 border-b border-custom">
+
+                <!-- Column 1: Brand & Bio -->
+                <div class="space-y-4">
+                    <a href="#hero" class="flex items-center gap-3 inline-block group"
+                        aria-label="Muhammad Talha Munir Homepage">
+                        <div
+                            class="w-10 h-10 rounded-xl bg-[var(--dark-green)] border border-custom flex items-center justify-center text-[var(--primary-green)] font-black text-xl shadow-lg group-hover:scale-105 transition transform">
+                            MT
+                        </div>
+                        <span class="text-xl font-extrabold tracking-wider text-[var(--text-color)]">
+                            MUHAMMAD<span class="text-[var(--primary-green)]"> TALHA</span>
+                        </span>
+                    </a>
+                    <p class="text-[var(--text-muted)] text-sm leading-relaxed max-w-sm">
+                        Certified ServiceNow Specialist (CSA &amp; CIS-DF) &amp; Computer Science Engineer. Architecting
+                        enterprise workflows, ITAM/ITSM solutions, and autonomous AI integrations.
+                    </p>
+                    <div
+                        class="inline-flex items-center gap-2 glass-pill text-[var(--primary-green)] text-xs font-semibold px-3 py-1.5 rounded-full">
+                        <span class="w-2 h-2 rounded-full bg-[var(--primary-green)] animate-ping"
+                            aria-hidden="true"></span>
+                        <span>Open for Remote &amp; Contract Work</span>
+                    </div>
+                </div>
+
+                <!-- Column 2: Quick Links -->
+                <nav class="space-y-3" aria-label="Footer Navigation">
+                    <h3
+                        class="text-sm font-extrabold uppercase tracking-wider text-[var(--text-color)] flex items-center gap-2">
+                        <span class="w-1.5 h-1.5 rounded-full bg-[var(--primary-green)]" aria-hidden="true"></span>
+                        <span>Navigation</span>
+                    </h3>
+                    <ul class="space-y-2 text-sm text-[var(--text-muted)]">
+                        <li>
+                            <a href="#hero" title="Go to Home"
+                                class="hover:text-[var(--primary-green)] transition flex items-center gap-1.5">
+                                <span aria-hidden="true">&rsaquo;</span> Home
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#about" title="Go to About Me"
+                                class="hover:text-[var(--primary-green)] transition flex items-center gap-1.5">
+                                <span aria-hidden="true">&rsaquo;</span> About Me
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#services" title="Go to Skills"
+                                class="hover:text-[var(--primary-green)] transition flex items-center gap-1.5">
+                                <span aria-hidden="true">&rsaquo;</span> Skills &amp; Capabilities
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#projects" title="Go to Projects"
+                                class="hover:text-[var(--primary-green)] transition flex items-center gap-1.5">
+                                <span aria-hidden="true">&rsaquo;</span> Featured Work
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#contact" title="Go to Contact Section"
+                                class="hover:text-[var(--primary-green)] transition flex items-center gap-1.5">
+                                <span aria-hidden="true">&rsaquo;</span> Contact &amp; Consultation
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+
+                <!-- Column 3: Specializations -->
+                <div class="space-y-3">
+                    <h3
+                        class="text-sm font-extrabold uppercase tracking-wider text-[var(--text-color)] flex items-center gap-2">
+                        <span class="w-1.5 h-1.5 rounded-full bg-[var(--primary-green)]" aria-hidden="true"></span>
+                        <span>Expertise</span>
+                    </h3>
+                    <ul class="space-y-2 text-sm text-[var(--text-muted)]">
+                        <li class="hover:text-[var(--text-color)] transition">ServiceNow ITSM &amp; ITAM</li>
+                        <li class="hover:text-[var(--text-color)] transition">CMDB &amp; CSDM Architecture</li>
+                        <li class="hover:text-[var(--text-color)] transition">Flow Designer &amp; Glide API</li>
+                        <li class="hover:text-[var(--text-color)] transition">Autonomous AI Agents</li>
+                        <li class="hover:text-[var(--text-color)] transition">REST / SOAP Integrations</li>
+                    </ul>
+                </div>
+
+                <!-- Column 4: Direct Contact & Socials -->
+                <div class="space-y-4">
+                    <h3
+                        class="text-sm font-extrabold uppercase tracking-wider text-[var(--text-color)] flex items-center gap-2">
+                        <span class="w-1.5 h-1.5 rounded-full bg-[var(--primary-green)]" aria-hidden="true"></span>
+                        <span>Connect</span>
+                    </h3>
+
+                    <div class="space-y-2 text-xs text-[var(--text-muted)]">
+                        <a href="mailto:muhammad.talhamunir@outlook.com" aria-label="Send email"
+                            class="block hover:text-[var(--primary-green)] transition truncate">
+                            <i class="fa-solid fa-envelope mr-2 text-[var(--primary-green)]" aria-hidden="true"></i>
+                            <span>muhammad.talhamunir@outlook.com</span>
+                        </a>
+                        <a href="tel:+923284962656" aria-label="Call phone number"
+                            class="block hover:text-[var(--primary-green)] transition">
+                            <i class="fa-solid fa-phone mr-2 text-[var(--primary-green)]" aria-hidden="true"></i>
+                            <span>+92 328 4962656</span>
+                        </a>
+                        <p class="block">
+                            <i class="fa-solid fa-location-dot mr-2 text-[var(--primary-green)]" aria-hidden="true"></i>
+                            <span>Punjab, Pakistan</span>
+                        </p>
+                    </div>
+
+                    <!-- Social Icons Buttons -->
+                    <div>
+                        <span class="text-[10px] uppercase font-bold text-[var(--text-muted)] block mb-2">Social
+                            Networks</span>
+                        <div class="flex items-center gap-2">
+                            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer"
+                                aria-label="Muhammad Talha's LinkedIn Profile"
+                                class="w-9 h-9 rounded-xl bg-[var(--dark-green)] border border-custom text-[var(--primary-green)] flex items-center justify-center hover:scale-110 hover:bg-[var(--primary-green)] hover:text-[var(--text-on-green)] transition">
+                                <i class="fa-brands fa-linkedin-in text-sm" aria-hidden="true"></i>
+                            </a>
+                            <a href="https://github.com" target="_blank" rel="noopener noreferrer"
+                                aria-label="Muhammad Talha's GitHub Profile"
+                                class="w-9 h-9 rounded-xl bg-[var(--dark-green)] border border-custom text-[var(--primary-green)] flex items-center justify-center hover:scale-110 hover:bg-[var(--primary-green)] hover:text-[var(--text-on-green)] transition">
+                                <i class="fa-brands fa-github text-sm" aria-hidden="true"></i>
+                            </a>
+                            <a href="https://twitter.com" target="_blank" rel="noopener noreferrer"
+                                aria-label="Muhammad Talha's Twitter Profile"
+                                class="w-9 h-9 rounded-xl bg-[var(--dark-green)] border border-custom text-[var(--primary-green)] flex items-center justify-center hover:scale-110 hover:bg-[var(--primary-green)] hover:text-[var(--text-on-green)] transition">
+                                <i class="fa-brands fa-x-twitter text-sm" aria-hidden="true"></i>
+                            </a>
+                            <a href="mailto:muhammad.talhamunir@outlook.com" aria-label="Email Muhammad Talha"
+                                class="w-9 h-9 rounded-xl bg-[var(--dark-green)] border border-custom text-[var(--primary-green)] flex items-center justify-center hover:scale-110 hover:bg-[var(--primary-green)] hover:text-[var(--text-on-green)] transition">
+                                <i class="fa-solid fa-envelope text-sm" aria-hidden="true"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Bottom Copyright & Back to Top -->
+            <div
+                class="pt-8 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs text-[var(--text-muted)]">
+                <p>&copy; 2026 Muhammad Talha Munir. All Rights Reserved.</p>
+
+                <div class="flex items-center gap-6">
+                    <a href="#hero" title="Scroll back to top"
+                        class="hover:text-[var(--primary-green)] transition flex items-center gap-1.5 font-semibold">
+                        <span>Back to top</span>
+                        <i class="fa-solid fa-arrow-up text-[10px]" aria-hidden="true"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script src="/assets/script.js"></script>
+</body>
+
+</html>
